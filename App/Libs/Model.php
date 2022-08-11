@@ -28,4 +28,8 @@ class Model
         $this->db->query("DELETE FROM {$this->table} where {$ownerKeyID} = {$id}");
         return $this->db->execute();
     }
+    function clear_inputs_html($input)
+    {
+        return htmlentities(addslashes($input));
+    }
 }

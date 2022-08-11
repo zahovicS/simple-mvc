@@ -17,4 +17,25 @@ class User extends Model
             return false;
         }
     }
+    public function confirm_login(string $email, string $pass): array
+    {
+        $email = $this->clear_inputs_html($email);
+        $pass = $this->clear_inputs_html($pass);
+        $response = ["status" => false, "data" => null];
+        $this->db->query("SELECT * FROM usuario WHERE email=:email AND del_status = 'Live' LIMIT 1");
+        $this->db->bind(":email", $email);
+        $res = $this->db->first();
+        if (password_verify($pass, $res->clave)) {
+            $response = ["status" => true, "data" => $res];
+        }
+        return $response;
+    }
+    public function get_permisos_user($id)
+    {
+        $res = [];
+        $this->db->query("SELECT permiso.nombre FROM usuario_permiso INNER JOIN permiso on usuario_permiso.idpermiso = permiso.idpermiso WHERE usuario_permiso.idusuario=:idusuario");
+        $this->db->bind(":idusuario", $id);
+        $res = $this->db->get();
+        return $res;
+    }
 }

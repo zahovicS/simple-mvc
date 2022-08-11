@@ -1,7 +1,7 @@
 <?php
 class Core
 {
-    protected $controller = "web";
+    protected $controller = "login";
     protected $function = "index";
     protected $params = [];
     public function __construct()
@@ -16,7 +16,7 @@ class Core
         }
         require_once dirname(__DIR__) . "/Controllers/" . $this->controller . ".php";
         $this->controller = new $this->controller;
-        
+
         //metodo
         if (isset($url[1])) {
             if (method_exists($this->controller, $url[1])) {

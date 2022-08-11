@@ -1,1 +1,3 @@
-const saludo = 'hola'
+$(function () {
+  $('#example').DataTable()
+})
