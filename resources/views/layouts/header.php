@@ -3,23 +3,48 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--===============================================================================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= BASE_URL ?>/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= BASE_URL ?>/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL ?>/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="<?= BASE_URL ?>/images/favicons/site.webmanifest">
+    <!--===============================================================================================-->
     <title><?= $data["title"] ?></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/bower_components/bulma/css/bulma.min.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/main.css">
     <!-- fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
     <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="<?= BASE_URL ?>/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- jquery -->
     <!-- datatables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bm/dt-1.12.1/datatables.min.css" />
     <script type="text/javascript" src="https://cdn.datatables.net/v/bm/dt-1.12.1/datatables.min.js"></script>
     <!-- datatables -->
+    <script src="https://kit.fontawesome.com/7ac530336f.js" crossorigin="anonymous"></script>
+    <!-- custom styles -->
+    <style>
+    table.dataTable.is-hoverable>tbody>tr:hover>* {
+        box-shadow: inset 0 0 0 9999px rgb(105 129 139 / 20%) !important;
+    }
+
+    table.dataTable.is-striped>tbody>tr>* {
+        border-bottom: 1px solid rgb(105 129 139 / 20%);
+    }
+
+    table.dataTable {
+        border: 1px solid rgb(105 129 139 / 20%);
+        border-radius: 10px;
+    }
+
+    .table tbody tr:last-child td,
+    .table tbody tr:last-child th {
+        border-bottom-width: 0 !important;
+    }
+    </style>
 </head>
 
 <body>
@@ -103,7 +128,7 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="#!">
+                                <a href="' . BASE_URL . '/Products">
                                     <span>Productos</span>
                                 </a>
                             </li>
