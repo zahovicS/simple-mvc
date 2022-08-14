@@ -28,7 +28,7 @@
 </section>
 <section class="section is-main-section">
     <div class="container is-fluid p-0">
-        <table class="table is-fullwidth is-hoverable is-striped is-fullwidth" id="example">
+        <table class="table width-100 is-hoverable is-striped" id="example">
             <thead>
                 <tr>
                     <th>#</th>
@@ -41,63 +41,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>123123123</td>
-                    <td>South Cory</td>
-                    <td>Carteras</td>
-                    <td>
-                        <div class="has-text-centered">
-                            <span class="tag is-primary is-light">25</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="has-text-centered">
-                            <span class="tag is-primary is-light">Activado</span>
-                        </div>
-                    </td>
-                    <td class="is-actions-cell">
-                        <div class="buttons are-small is-centered">
-                            <button class="button is-small is-primary pt-0 pb-0 m-0 mb-2 mr-1 ml-1" type="button">
-                                <span class="icon"><i class="fa-regular fa-eye fa-lg"></i></span>
-                            </button>
-                            <button class="button is-small is-primary pt-0 pb-0 m-0 mb-2 mr-1 ml-1" type="button">
-                                <span class="icon"><i class="fa-regular fa-eye fa-lg"></i></span>
-                            </button>
-                            <button class="button is-small is-danger pt-0 pb-0 m-0 mb-2 mr-1 ml-1 jb-modal"
-                                data-target="sample-modal" type="button">
-                                <span class="icon"><i class="fa-regular fa-trash-can"></i></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>123122223</td>
-                    <td>South Cory</td>
-                    <td>Mochilas</td>
-                    <td>
-                        <div class="has-text-centered">
-                            <span class="tag is-danger is-light">0</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="has-text-centered">
-                            <span class="tag is-danger is-light">Desactivado</span>
-                        </div>
-                    </td>
-                    <td class="is-actions-cell">
-                        <div class="buttons are-small is-centered">
-                            <button class="button is-small is-primary pt-0 pb-0 m-0 mb-2 mr-1 ml-1" type="button">
-                                <span class="icon"><i class="fa-regular fa-eye fa-lg"></i></span>
-                            </button>
-                            <button class="button is-small is-danger pt-0 pb-0 m-0 mb-2 mr-1 ml-1 jb-modal"
-                                data-target="sample-modal" type="button">
-                                <span class="icon"><i class="fa-regular fa-trash-can"></i></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+
             </tbody>
         </table>
     </div>

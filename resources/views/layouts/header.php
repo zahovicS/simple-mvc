@@ -11,8 +11,11 @@
     <link rel="manifest" href="<?= BASE_URL ?>/images/favicons/site.webmanifest">
     <!--===============================================================================================-->
     <title><?= $data["title"] ?></title>
+    <!-- bulma -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/bower_components/bulma/css/bulma.min.css">
+    <!-- bulma -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/main.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
     <!-- fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -21,8 +24,13 @@
     <script src="<?= BASE_URL ?>/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- jquery -->
     <!-- datatables -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bm/dt-1.12.1/datatables.min.css" />
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bm/dt-1.12.1/datatables.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bm/dt-1.12.1/datatables.min.css" /> -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bm/dt-1.12.1/fc-4.1.0/fh-3.2.4/kt-2.7.0/r-2.3.0/rg-1.2.0/rr-1.2.8/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/datatables.min.css" />
+    <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bm/dt-1.12.1/datatables.min.js"></script> -->
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bm/dt-1.12.1/fc-4.1.0/fh-3.2.4/kt-2.7.0/r-2.3.0/rg-1.2.0/rr-1.2.8/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/datatables.min.js">
+    </script>
     <!-- datatables -->
     <script src="https://kit.fontawesome.com/7ac530336f.js" crossorigin="anonymous"></script>
     <!-- custom styles -->

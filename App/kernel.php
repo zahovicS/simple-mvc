@@ -8,3 +8,5 @@ require_once dirname(__DIR__) . "/App/Libs/Core.php";
 spl_autoload_register(function ($clase) {
     require_once dirname(__DIR__) . "/App/Libs/" . $clase . ".php";
 });
+//other
+require '../vendor/autoload.php';

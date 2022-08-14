@@ -9,7 +9,7 @@ class Login extends Controller
     public function index()
     {
         if (!empty($_SESSION["id_usuario"])) {
-            dd($_SESSION);
+            // dd($_SESSION);
             return $this->redirect(BASE_URL . "/dashboard");
         }
         $this->view("login.login", [], false);

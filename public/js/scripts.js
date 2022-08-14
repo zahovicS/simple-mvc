@@ -1,3 +1,15 @@
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  },
+})
+
 const DEFAULT_ES_DATATABLE = {
   decimal: '',
   emptyTable: `<div class="d-block"></div><div class="d-block"><i class="fas fa-frown fa-lg"></i> No hay información</div>`,
@@ -20,3 +32,24 @@ const DEFAULT_ES_DATATABLE = {
 }
 const DEFAULT_DOM_DATATABLE =
   "<t<'container is-fluid p-0'<'columns'<'column is-half'i><'column is-half'p>>>>"
+
+async function get_person_dni(dni) {
+  if (!dni) return console.error('no puede buscar sin DNI.')
+  await axios({
+    method: 'get',
+    url: base_url + '/search/dni/' + dni,
+  }).then(function (response) {
+    console.log(response.data)
+  })
+}
+async function get_company_ruc(ruc) {
+  if (!ruc) return console.error('no puede buscar sin RUC.')
+  await axios({
+    method: 'get',
+    url: base_url + '/search/ruc/' + ruc,
+  }).then(function (response) {
+    console.log(response.data)
+  })
+}
+// get_person_dni('71748161')
+// get_company_ruc('20514966631')

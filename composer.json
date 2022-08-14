@@ -1,0 +1,6 @@
+{
+  "require": {
+    "giansalex/peru-consult": "^4.5",
+    "dompdf/dompdf": "^2.0"
+  }
+}
