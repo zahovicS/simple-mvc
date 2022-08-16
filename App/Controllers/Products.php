@@ -83,4 +83,9 @@ class Products extends Controller
         echo json_encode($this->message(true, "Datos actualizados correctamente."));
         return;
     }
+    public function crear($data)
+    {
+
+        dd($_POST);
+    }
 }

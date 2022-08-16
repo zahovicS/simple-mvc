@@ -9,7 +9,7 @@ class Product extends Model
     public function getAllProducts()
     {
         $res = [];
-        $this->db->query("SELECT articulo.idarticulo,articulo.codigo,articulo.nombre,categoria.nombre categoria,articulo.stock,articulo.descripcion,articulo.imagen,articulo.condicion FROM articulo INNER JOIN categoria on articulo.idcategoria = categoria.idcategoria");
+        $this->db->query("SELECT articulo.idarticulo,articulo.codigo,articulo.nombre,categoria.nombre categoria,articulo.stock,articulo.descripcion,articulo.imagen,articulo.condicion FROM {$this->table} INNER JOIN categoria on articulo.idcategoria = categoria.idcategoria");
         $res = $this->db->get();
         return $res;
     }
