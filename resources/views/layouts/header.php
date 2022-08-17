@@ -136,7 +136,7 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="' . BASE_URL . '/Products">
+                                <a href="' . BASE_URL . '/products">
                                     <span>Productos</span>
                                 </a>
                             </li>

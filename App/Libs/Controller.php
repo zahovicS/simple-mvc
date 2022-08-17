@@ -59,4 +59,10 @@ class Controller
     {
         return ["status" => $status, "msg" => $message];
     }
+    protected function verifyAuthUser()
+    {
+        if (empty($_SESSION["id_usuario"])) {
+            return $this->redirect(BASE_URL . "/");
+        }
+    }
 }

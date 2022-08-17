@@ -32,7 +32,7 @@
                     <img src="images/img-01.png" alt="IMG">
                 </div>
 
-                <form action="<?= BASE_URL ?>/Login/loger" class="login100-form validate-form" method="POST">
+                <form action="<?= BASE_URL ?>/Login" class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
                         Inicio de sesión
                     </span>

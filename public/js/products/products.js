@@ -3,7 +3,7 @@ $(function () {
   const cargar_categoria = (target = '', edit = '_edit') => {
     axios({
       method: 'get',
-      url: base_url + '/Categories/get_all_categories_for_dropdown',
+      url: base_url + '/categories/categories_for_dropdown',
     }).then(function (response) {
       let template =
         '<option class="is-uppercase" value="" selected>Seleccione la categoría</option>'
@@ -32,8 +32,11 @@ $(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         axios({
-          method: 'get',
-          url: base_url + '/products/activar_producto/' + id,
+          method: 'POST',
+          url: base_url + '/products/desactivar_producto?id=' + id,
+          data: {
+            id: id,
+          },
         }).then(function (response) {
           console.log(response.data)
           if (!response.data.status) {
@@ -70,8 +73,8 @@ $(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         axios({
-          method: 'get',
-          url: base_url + '/products/desactivar_producto/' + id,
+          method: 'GET',
+          url: base_url + '/products/desactivar_producto?id=' + id,
         }).then(function (response) {
           console.log(response.data)
           if (!response.data.status) {
@@ -100,7 +103,7 @@ $(function () {
     autoWidth: true,
     ajax: {
       type: 'get',
-      url: base_url + '/products/tableProducts',
+      url: base_url + '/products/cargar_tabla',
       error: function (xhr, ajaxOptions, thrownError) {
         console.log(xhr.responseText)
         console.log(thrownError)

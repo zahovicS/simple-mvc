@@ -3,8 +3,9 @@ class Categories extends Controller
 {
     public function __construct()
     {
-        $this->MCategoria = $this->model("Categoria");
+        $this->verifyAuthUser();
         parent::__construct();
+        $this->MCategoria = $this->model("Categoria");
     }
     public function index()
     {

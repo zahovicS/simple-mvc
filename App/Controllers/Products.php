@@ -3,8 +3,9 @@ class Products extends Controller
 {
     public function __construct()
     {
-        $this->MProducts = $this->model("Product");
+        $this->verifyAuthUser();
         parent::__construct();
+        $this->MProducts = $this->model("Product");
     }
     public function index()
     {
@@ -63,6 +64,7 @@ class Products extends Controller
     }
     public function desactivar_producto($id)
     {
+        dd($id);
         $id = base64_decode($id[0]);
         $response = $this->MProducts->desactivar_producto($id);
         if (!$response) {
@@ -74,6 +76,7 @@ class Products extends Controller
     }
     public function activar_producto($id)
     {
+        dd($id);
         $id = base64_decode($id[0]);
         $response = $this->MProducts->activar_producto($id);
         if (!$response) {
@@ -85,7 +88,6 @@ class Products extends Controller
     }
     public function crear($data)
     {
-
         dd($_POST);
     }
 }
