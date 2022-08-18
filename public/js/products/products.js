@@ -32,24 +32,24 @@ $(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         axios({
-          method: 'POST',
+          method: 'GET',
           url: base_url + '/products/desactivar_producto?id=' + id,
           data: {
             id: id,
           },
         }).then(function (response) {
-          console.log(response.data)
-          if (!response.data.status) {
-            Toast.fire({
-              icon: 'warning',
-              title: response.data.msg,
-            })
-          }
-          Toast.fire({
-            icon: 'success',
-            title: response.data.msg,
-          })
-          tablaProductos.ajax.reload(null, false)
+          console.log(response)
+          // if (!response.data.status) {
+          //   Toast.fire({
+          //     icon: 'warning',
+          //     title: response.data.msg,
+          //   })
+          // }
+          // Toast.fire({
+          //   icon: 'success',
+          //   title: response.data.msg,
+          // })
+          // tablaProductos.ajax.reload(null, false)
         })
       }
     })
@@ -75,19 +75,22 @@ $(function () {
         axios({
           method: 'GET',
           url: base_url + '/products/desactivar_producto?id=' + id,
+          data: {
+            id: id,
+          },
         }).then(function (response) {
-          console.log(response.data)
-          if (!response.data.status) {
-            Toast.fire({
-              icon: 'warning',
-              title: response.data.msg,
-            })
-          }
-          Toast.fire({
-            icon: 'success',
-            title: response.data.msg,
-          })
-          tablaProductos.ajax.reload(null, false)
+          console.log(response)
+          // if (!response.data.status) {
+          //   Toast.fire({
+          //     icon: 'warning',
+          //     title: response.data.msg,
+          //   })
+          // }
+          // Toast.fire({
+          //   icon: 'success',
+          //   title: response.data.msg,
+          // })
+          // tablaProductos.ajax.reload(null, false)
         })
       }
     })
@@ -102,7 +105,7 @@ $(function () {
     responsive: true,
     autoWidth: true,
     ajax: {
-      type: 'get',
+      type: 'GET',
       url: base_url + '/products/cargar_tabla',
       error: function (xhr, ajaxOptions, thrownError) {
         console.log(xhr.responseText)
