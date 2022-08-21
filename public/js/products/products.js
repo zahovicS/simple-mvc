@@ -33,23 +33,20 @@ $(function () {
       if (result.isConfirmed) {
         axios({
           method: 'GET',
-          url: base_url + '/products/desactivar_producto?id=' + id,
-          data: {
-            id: id,
-          },
+          url: base_url + '/products/activar_producto?id=' + id,
         }).then(function (response) {
-          console.log(response)
-          // if (!response.data.status) {
-          //   Toast.fire({
-          //     icon: 'warning',
-          //     title: response.data.msg,
-          //   })
-          // }
-          // Toast.fire({
-          //   icon: 'success',
-          //   title: response.data.msg,
-          // })
-          // tablaProductos.ajax.reload(null, false)
+          // console.log(response.data)
+          if (!response.data.status) {
+            Toast.fire({
+              icon: 'warning',
+              title: response.data.msg,
+            })
+          }
+          Toast.fire({
+            icon: 'success',
+            title: response.data.msg,
+          })
+          tablaProductos.ajax.reload(null, false)
         })
       }
     })
@@ -75,22 +72,19 @@ $(function () {
         axios({
           method: 'GET',
           url: base_url + '/products/desactivar_producto?id=' + id,
-          data: {
-            id: id,
-          },
         }).then(function (response) {
-          console.log(response)
-          // if (!response.data.status) {
-          //   Toast.fire({
-          //     icon: 'warning',
-          //     title: response.data.msg,
-          //   })
-          // }
-          // Toast.fire({
-          //   icon: 'success',
-          //   title: response.data.msg,
-          // })
-          // tablaProductos.ajax.reload(null, false)
+          // console.log(response.data)
+          if (!response.data.status) {
+            Toast.fire({
+              icon: 'warning',
+              title: response.data.msg,
+            })
+          }
+          Toast.fire({
+            icon: 'success',
+            title: response.data.msg,
+          })
+          tablaProductos.ajax.reload(null, false)
         })
       }
     })
@@ -123,38 +117,38 @@ $(function () {
   })
   $('#btnGenerar_codigo').on('click', function () {
     const target = $(this).data('targetInput')
-    console.log(target)
+    // console.log(target)
     generar_codigo(target)
   })
   $('#frmCrearProducto').on('submit', function (e) {
     e.preventDefault()
-    const validador = $(this).validate({
-      errorClass: 'is-danger',
-      validClass: 'is-success',
-      rules: {
-        codigo_producto: {
-          required: true,
-          minlength: 'El código debe ser de maximo 11 carácteres',
-        },
-        nombre_producto: {
-          required: true,
-        },
-      },
-      highlight: function (element, errorClass, validClass) {
-        $(element)
-          .closest('.validate')
-          .addClass(errorClass)
-          .removeClass(validClass)
-      },
-      unhighlight: function (element, errorClass, validClass) {
-        $(element)
-          .closest('.validate')
-          .addClass(validClass)
-          .removeClass(errorClass)
-      },
-    })
-    console.log(validador)
-    return
+    // const validador = $(this).validate({
+    //   errorClass: 'is-danger',
+    //   validClass: 'is-success',
+    //   rules: {
+    //     codigo_producto: {
+    //       required: true,
+    //       minlength: 'El código debe ser de maximo 11 carácteres',
+    //     },
+    //     nombre_producto: {
+    //       required: true,
+    //     },
+    //   },
+    //   highlight: function (element, errorClass, validClass) {
+    //     $(element)
+    //       .closest('.validate')
+    //       .addClass(errorClass)
+    //       .removeClass(validClass)
+    //   },
+    //   unhighlight: function (element, errorClass, validClass) {
+    //     $(element)
+    //       .closest('.validate')
+    //       .addClass(validClass)
+    //       .removeClass(errorClass)
+    //   },
+    // })
+    // console.log(validador)
+    // return
     let params = new FormData()
     // const params = new URLSearchParams()
     params.append('codigo_producto', $('#codigo_producto').val())
@@ -162,10 +156,9 @@ $(function () {
     params.append('select-categoria', $('#select-categoria').val())
     params.append('stock_producto', $('#stock_producto').val())
     params.append('imagen_producto', $('#imagen_producto')[0].files[0])
-    console.log(params, base_url + $(this).attr('action'))
     axios({
       method: 'POST',
-      url: base_url + '/products/crear',
+      url: $(this).attr("action"),
       data: params,
     }).then(function (response) {
       console.log(response.data)

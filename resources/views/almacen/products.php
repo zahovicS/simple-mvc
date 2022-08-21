@@ -53,7 +53,7 @@
 </section>
 <div id="añadir-producto" class="modal">
     <div class="modal-background"></div>
-    <form action="#!" method="POST" class="modal-card" id="frmCrearProducto" enctype="multipart/form-data">
+    <form action="<?=BASE_URL?>/products/crear" method="POST" class="modal-card" id="frmCrearProducto" enctype="multipart/form-data">
         <header class="modal-card-head">
             <p class="modal-card-title is-uppercase has-text-weight-bold is-size-4">Crear Produto</p>
         </header>

@@ -26,6 +26,7 @@ $router->get('/dashboard', Dashboard::class . "::index");
 #PRODUCTS
 $router->get('/products', Products::class . "::index");
 $router->get('/products/cargar_tabla', Products::class . "::tableProducts");
+$router->post('/products/crear', Products::class . "::crear");
 $router->get('/products/activar_producto', Products::class . "::activar_producto");
 $router->get('/products/desactivar_producto', Products::class . "::desactivar_producto");
 #END PRODUCTS
@@ -34,8 +35,8 @@ $router->get('/products/desactivar_producto', Products::class . "::desactivar_pr
 $router->get('/categories/categories_for_dropdown', Categories::class . "::get_all_categories_for_dropdown");
 #END CATEGORIES
 #TESTING
-$router->post('/postes', function (array $params = []) {
-    var_dump($params);
+$router->post('/post', function (array $params = []) {
+    dd($params);
 });
 $router->get('/test', function (array $params = []) {
     var_dump($params);

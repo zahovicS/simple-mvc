@@ -33,6 +33,7 @@ class Router
         $requestUri = parse_url($_SERVER["REQUEST_URI"]);
         $requestPath = $requestUri["path"];
         $method = $_SERVER["REQUEST_METHOD"];
+        $http_request = $_SERVER["REQUEST_METHOD"];
         $callback = null;
         // dd([$requestUri, $requestPath, $method, $this->handlers]);
         foreach ($this->handlers as $handler) {
@@ -58,7 +59,17 @@ class Router
             }
             // exit(0);
         }
-        // dd($_POST);
-        call_user_func_array($callback, [array_merge($_GET, $_POST,$_REQUEST,$_FILES)]);
+        $GET = $_GET;
+        unset($GET["url"]);
+        $data = $this->filter_request($http_request,["GET"=> $GET,"POST"=> $_POST,"FILES"=>$_FILES]);
+        call_user_func_array($callback, [array_merge($data)]);
+    }
+    private function filter_request (string $http_request,array $data):array {
+        if($http_request == "GET"){
+            return $data["GET"];
+        }
+        if($http_request == "POST"){
+            return array_merge($data["POST"],["FILES" => $data["FILES"]]);
+        }
     }
 }

@@ -64,30 +64,28 @@ class Products extends Controller
     }
     public function desactivar_producto($request)
     {
-        dd([$request, $_GET, $_POST, $_REQUEST]);
-        // $id = base64_decode($id[0]);
-        // $response = $this->MProducts->desactivar_producto($id);
-        // if (!$response) {
-        //     echo json_encode($this->message(false, "Hubo un error al actualizar."));
-        //     return;
-        // }
-        // echo json_encode($this->message(true, "Datos actualizados correctamente."));
-        // return;
+        $id = base64_decode($request["id"]);
+        $response = $this->MProducts->desactivar_producto($id);
+        if (!$response) {
+            echo json_encode($this->message(false, "Hubo un error al actualizar."));
+            return;
+        }
+        echo json_encode($this->message(true, "Datos actualizados correctamente."));
+        return;
     }
     public function activar_producto($request)
     {
-        dd([$request, $_GET, $_POST, $_REQUEST]);
-        // $id = base64_decode($id[0]);
-        // $response = $this->MProducts->activar_producto($id);
-        // if (!$response) {
-        //     echo json_encode($this->message(false, "Hubo un error al actualizar."));
-        //     return;
-        // }
-        // echo json_encode($this->message(true, "Datos actualizados correctamente."));
-        // return;
+        $id = base64_decode($request["id"]);
+        $response = $this->MProducts->activar_producto($id);
+        if (!$response) {
+            echo json_encode($this->message(false, "Hubo un error al actualizar."));
+            return;
+        }
+        echo json_encode($this->message(true, "Datos actualizados correctamente."));
+        return;
     }
     public function crear($data)
     {
-        dd($_POST);
+        dd($data);
     }
 }
