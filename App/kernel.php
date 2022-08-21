@@ -14,7 +14,6 @@ spl_autoload_register(function ($clase) {
 });
 //other
 require '../vendor/autoload.php';
-
 $router = new Router();
 #LOGIN
 $router->get('/', Login::class . "::index");
@@ -35,7 +34,7 @@ $router->get('/products/desactivar_producto', Products::class . "::desactivar_pr
 $router->get('/categories/categories_for_dropdown', Categories::class . "::get_all_categories_for_dropdown");
 #END CATEGORIES
 #TESTING
-$router->post('/post', function ($params) {
+$router->post('/postes', function (array $params = []) {
     var_dump($params);
 });
 $router->get('/test', function (array $params = []) {

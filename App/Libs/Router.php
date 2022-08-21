@@ -59,6 +59,6 @@ class Router
             // exit(0);
         }
         // dd($_POST);
-        call_user_func_array($callback, [array_merge($_GET, $_POST)]);
+        call_user_func_array($callback, [array_merge($_GET, $_POST,$_REQUEST,$_FILES)]);
     }
 }
