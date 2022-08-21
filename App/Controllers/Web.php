@@ -14,4 +14,7 @@ class Web extends Controller
         ];
         $this->view("dashboard.index", $data);
     }
+    public function request($req){
+        dd($req);
+    }
 }

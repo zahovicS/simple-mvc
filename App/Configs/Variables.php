@@ -1,7 +1,8 @@
 <?php
 define('RUTE_APP', dirname(dirname(__FILE__))); //nombre del proyecto - carpeta
-define('BASE_URL', 'http://localhost/mvc'); //base url
-define('URI_PROJECT', '/mvc'); //base url
+define('BASE_URL', 'http://localhost/simple-mvc'); //base url
+define('URI_PROJECT', '/simple-mvc'); //base url
+define('BASE_URL', 'http://localhost/simple-mvc'); //base url
 define('NAME_PROJECT', 'SISTEMA DE VENTAS'); //base url
 define('DB_SERVER', 'localhost'); //servidor
 define('DB_NAME', 'dbsistema'); //nombre de la base de datos
