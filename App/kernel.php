@@ -31,9 +31,11 @@ $router->get('/products/activar_producto', Products::class . "::activar_producto
 $router->get('/products/desactivar_producto', Products::class . "::desactivar_producto");
 #END PRODUCTS
 #CATEGORIES
-// $router->get('/products', Products::class . "::index");
 $router->get('/categories/categories_for_dropdown', Categories::class . "::get_all_categories_for_dropdown");
 #END CATEGORIES
+#UNIDADES
+$router->get('/unidades/unidades_for_dropdown', Unidades::class . "::get_all_unidades_for_dropdown");
+#END UNIDADES
 #TESTING
 $router->post('/post', function (array $params = []) {
     dd($params);

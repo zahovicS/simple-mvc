@@ -1,12 +1,12 @@
 <?php
-class Categoria extends Model
+class Unidad extends Model
 {
     public function __construct()
     {
-        $this->table = "categoria";
+        $this->table = "unidad";
         parent::__construct();
     }
-    public function categories_for_dropdown()
+    public function unidad_for_dropdown()
     {
         $res = [];
         $this->db->query("SELECT * FROM {$this->table} WHERE condicion = 1");

@@ -39,6 +39,9 @@
 .width-100 {
   width: 100% !important;
 }
+.width-50 {
+  width: 50% !important;
+}
 .dtr-details {
   width: 100% !important;
   text-align: center !important;

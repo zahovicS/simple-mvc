@@ -86,6 +86,24 @@ class Products extends Controller
     }
     public function crear($data)
     {
-        dd($data);
+        if ($data["codigo_producto"] != "") {
+            $has_image = count($data["FILES"]) > 0 ? true : false;
+            if($has_image){
+                $image_response = $this->verifyImage($data["FILES"]["imagen_producto"]);
+                if(!$image_response["status"]){
+                    echo json_encode($this->message($image_response["status"], $image_response["msg"]));
+                    return;
+                }
+            }
+            $response = $this->MProducts->crear_producto($data);
+            if (!$response) {
+                echo json_encode($this->message(false, "Hubo un error al actualizar."));
+                return;
+            }
+            echo json_encode($this->message(true, "Datos agregados correctamente."));
+            return;
+        }
+        echo json_encode($this->message(false, "Hubo un error en la creación."));
+        return;
     }
 }

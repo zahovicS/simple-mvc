@@ -53,7 +53,8 @@
 </section>
 <div id="añadir-producto" class="modal">
     <div class="modal-background"></div>
-    <form action="<?=BASE_URL?>/products/crear" method="POST" class="modal-card" id="frmCrearProducto" enctype="multipart/form-data">
+    <form action="<?= BASE_URL ?>/products/crear" method="POST" class="modal-card" id="frmCrearProducto"
+        enctype="multipart/form-data">
         <header class="modal-card-head">
             <p class="modal-card-title is-uppercase has-text-weight-bold is-size-4">Crear Produto</p>
         </header>
@@ -61,7 +62,7 @@
             <label class="label">Código</label>
             <div class="field has-addons">
                 <div class="control width-100">
-                    <input class="input" type="text" placeholder="Find a repository" name="codigo_producto"
+                    <input class="input" type="text" placeholder="Escriba un codigo en EAN-13" name="codigo_producto"
                         id="codigo_producto" maxlength="11" minlength="3">
                 </div>
                 <div class="control">
@@ -87,16 +88,28 @@
                     </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label">Stock</label>
-                <div class="control">
-                    <input class="input" type="number" placeholder="Mascarilla facial JL-100" name="stock_producto"
-                        id="stock_producto">
+            <div class="field is-grouped pt-2">
+                <div class="width-50 pr-1">
+                    <label class="label">Stock</label>
+                    <div class="control">
+                        <input class="input" type="number" value="0" placeholder="0" name="stock_producto"
+                            id="stock_producto">
+                    </div>
+                </div>
+                <div class="width-50 pl-1">
+                    <label class="label">Unidad de medida</label>
+                    <div class="control">
+                        <div class="select width-100">
+                            <select class="width-100" id="select-unidad" name="select-unidad">
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="file is-warning width-100 mt-1">
-                <label class="file-label width-100">
-                    <input class="file-input" type="file" name="imagen_producto" id="imagen_producto">
+            <div class="file is-warning width-100 mt-4">
+                <label class="file-label width-100 mt-4">
+                    <input class="file-input" type="file" name="imagen_producto" id="imagen_producto"
+                        accept="image/png, image/jpg, image/jpeg">
                     <span class="file-cta width-100">
                         <span class="file-icon">
                             <i class="fas fa-cloud-upload-alt"></i>

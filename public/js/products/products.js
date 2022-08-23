@@ -13,6 +13,19 @@ $(function () {
       $(target + edit).html(template)
     })
   }
+  const cargar_unidad = (target = '', edit = '_edit') => {
+    axios({
+      method: 'get',
+      url: base_url + '/unidades/unidades_for_dropdown',
+    }).then(function (response) {
+      let template =
+        '<option class="is-uppercase" value="" selected>Seleccione la unidad de medida</option>'
+      $.each(response.data, function (i, v) {
+        template += `<option class="is-uppercase" value="${v.idunidad}">${v.nombre} [${v.value}]</option>`
+      })
+      $(target + edit).html(template)
+    })
+  }
   const activar_producto = (id) => {
     if (!id) return console.error('sin ID de producto')
     Swal.fire({
@@ -93,6 +106,7 @@ $(function () {
     $(target).val(Math.floor(Math.random() * 99999999999 + 1))
   }
   cargar_categoria('#select-categoria', '')
+  cargar_unidad('#select-unidad', '')
   tablaProductos = $('#example').DataTable({
     dom: DEFAULT_DOM_DATATABLE,
     language: DEFAULT_ES_DATATABLE,
@@ -120,48 +134,58 @@ $(function () {
     // console.log(target)
     generar_codigo(target)
   })
-  $('#frmCrearProducto').on('submit', function (e) {
-    e.preventDefault()
-    // const validador = $(this).validate({
-    //   errorClass: 'is-danger',
-    //   validClass: 'is-success',
-    //   rules: {
-    //     codigo_producto: {
-    //       required: true,
-    //       minlength: 'El código debe ser de maximo 11 carácteres',
-    //     },
-    //     nombre_producto: {
-    //       required: true,
-    //     },
-    //   },
-    //   highlight: function (element, errorClass, validClass) {
-    //     $(element)
-    //       .closest('.validate')
-    //       .addClass(errorClass)
-    //       .removeClass(validClass)
-    //   },
-    //   unhighlight: function (element, errorClass, validClass) {
-    //     $(element)
-    //       .closest('.validate')
-    //       .addClass(validClass)
-    //       .removeClass(errorClass)
-    //   },
-    // })
-    // console.log(validador)
-    // return
-    let params = new FormData()
-    // const params = new URLSearchParams()
-    params.append('codigo_producto', $('#codigo_producto').val())
-    params.append('nombre_producto', $('#nombre_producto').val())
-    params.append('select-categoria', $('#select-categoria').val())
-    params.append('stock_producto', $('#stock_producto').val())
-    params.append('imagen_producto', $('#imagen_producto')[0].files[0])
-    axios({
-      method: 'POST',
-      url: $(this).attr("action"),
-      data: params,
-    }).then(function (response) {
-      console.log(response.data)
-    })
+  $('#frmCrearProducto').validate({
+    errorClass: 'is-danger',
+    validClass: 'is-success',
+    rules: {
+      codigo_producto: {
+        required: true,
+        minlength: 11,
+        maxlength: 11,
+      },
+      nombre_producto: {
+        required: true,
+        minlength: 4,
+      },
+      stock_producto: {
+        required: false,
+        minlength: 1,
+      },
+      'select-categoria': {
+        required: true,
+      },
+      'select-unidad': {
+        required: true,
+      },
+    },
+    submitHandler: function (form) {
+      let params = new FormData()
+      params.append('codigo_producto', $('#codigo_producto').val())
+      params.append('nombre_producto', $('#nombre_producto').val())
+      params.append('select_categoria', $('#select-categoria').val())
+      params.append('select_unidad', $('#select-unidad').val())
+      params.append('stock_producto', $('#stock_producto').val())
+      params.append('imagen_producto', $('#imagen_producto')[0].files[0])
+      axios({
+        method: 'POST',
+        url: base_url + '/products/crear',
+        data: params,
+      }).then(function (response) {
+        console.log(response.data)
+        if (!response.data.status) {
+          return Toast.fire({
+            icon: 'warning',
+            title: response.data.msg,
+          })
+        }
+        tablaProductos.ajax.reload(null, false)
+        hideModal("#añadir-producto");
+        resetForm("#frmCrearProducto");
+        return Toast.fire({
+          icon: 'success',
+          title: response.data.msg,
+        })
+      })
+    },
   })
 })
