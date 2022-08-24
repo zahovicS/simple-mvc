@@ -51,14 +51,20 @@ const get_company_ruc = async (ruc) => {
     console.log(response.data)
   })
 }
-const hideModal = (target) => {
+const openModal = target => {
+  const modal = document.querySelector(target);
+  modal.classList.add("is-active");
+  document.documentElement.classList.add('is-clipped')
+}
+const hideModal = target => {
   const modal = document.querySelector(target);
   modal.classList.remove("is-active");
   document.documentElement.classList.remove('is-clipped')
 }
-const resetForm = (target) => {
+const resetForm = target => {
   const form = document.querySelector(target);
   form.reset();
 }
+// function ready(fn){var d=document;(d.readyState=='loading')?d.addEventListener('DOMContentLoaded',fn):fn();}
 // get_person_dni('71748161')
 // get_company_ruc('20514966631')

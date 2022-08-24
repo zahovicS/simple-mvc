@@ -61,15 +61,16 @@ class Router
         }
         $GET = $_GET;
         unset($GET["url"]);
-        $data = $this->filter_request($http_request,["GET"=> $GET,"POST"=> $_POST,"FILES"=>$_FILES]);
-        call_user_func_array($callback, [array_merge($data)]);
+        $data = $this->filter_request($http_request, ["GET" => $GET, "POST" => $_POST, "FILES" => $_FILES]);
+        call_user_func_array($callback, [(object) $data]);
     }
-    private function filter_request (string $http_request,array $data):array {
-        if($http_request == "GET"){
+    private function filter_request(string $http_request, array $data): array
+    {
+        if ($http_request == "GET") {
             return $data["GET"];
         }
-        if($http_request == "POST"){
-            return array_merge($data["POST"],["FILES" => $data["FILES"]]);
+        if ($http_request == "POST") {
+            return array_merge($data["POST"], ["FILES" => $data["FILES"]]);
         }
     }
 }

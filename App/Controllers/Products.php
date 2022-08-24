@@ -27,7 +27,7 @@ class Products extends Controller
                 $actions = '<div class="buttons are-small is-centered">
                                 <div class="tooltip">
                                     <span class="tooltiptext">Editar</span>
-                                    <button class="button is-small is-warning pt-0 pb-0 m-0 mb-2 mr-1 ml-1" data-id="' . $idProducto . '"  type="button">
+                                    <button class="button is-small is-warning pt-0 pb-0 m-0 mb-2 mr-1 ml-1 editarProduct jb-modal" data-id="' . $idProducto . '" data-target="#editar-producto"  type="button">
                                         <span class="icon"><i class="fa-solid fa-pen fa-lg"></i></span>
                                     </button>
                                 </div>            
@@ -62,9 +62,9 @@ class Products extends Controller
         echo json_encode($result);
         return;
     }
-    public function desactivar_producto($request)
+    public function desactivar_producto(object $request)
     {
-        $id = base64_decode($request["id"]);
+        $id = base64_decode($request->id);
         $response = $this->MProducts->desactivar_producto($id);
         if (!$response) {
             echo json_encode($this->message(false, "Hubo un error al actualizar."));
@@ -73,9 +73,9 @@ class Products extends Controller
         echo json_encode($this->message(true, "Datos actualizados correctamente."));
         return;
     }
-    public function activar_producto($request)
+    public function activar_producto(object $request)
     {
-        $id = base64_decode($request["id"]);
+        $id = base64_decode($request->id);
         $response = $this->MProducts->activar_producto($id);
         if (!$response) {
             echo json_encode($this->message(false, "Hubo un error al actualizar."));
@@ -84,26 +84,56 @@ class Products extends Controller
         echo json_encode($this->message(true, "Datos actualizados correctamente."));
         return;
     }
-    public function crear($data)
+    public function crear(object $request)
     {
-        if ($data["codigo_producto"] != "") {
-            $has_image = count($data["FILES"]) > 0 ? true : false;
-            if($has_image){
-                $image_response = $this->verifyImage($data["FILES"]["imagen_producto"]);
-                if(!$image_response["status"]){
+        if ($request->codigo_producto != "") {
+            $has_image = count($request->FILES) > 0 ? true : false;
+            if ($has_image) {
+                $image_response = $this->verifyImage($request->FILES->imagen_producto);
+                if (!$image_response["status"]) {
                     echo json_encode($this->message($image_response["status"], $image_response["msg"]));
                     return;
                 }
             }
-            $response = $this->MProducts->crear_producto($data);
+            $response = $this->MProducts->crear_producto($request);
             if (!$response) {
-                echo json_encode($this->message(false, "Hubo un error al actualizar."));
+                echo json_encode($this->message(false, "Hubo un error al crear."));
                 return;
             }
             echo json_encode($this->message(true, "Datos agregados correctamente."));
             return;
         }
         echo json_encode($this->message(false, "Hubo un error en la creación."));
+        return;
+    }
+    public function editar(object $request)
+    {
+        // echo json_encode($request);
+        if ($request->id_producto_edit != "") {
+            $has_image = count($request->FILES) > 0 ? true : false;
+            if ($has_image) {
+                $image_response = $this->verifyImage($request->FILES["imagen_producto_edit"]);
+                if (!$image_response["status"]) {
+                    echo json_encode($this->message($image_response["status"], $image_response["msg"]));
+                    return;
+                }
+            }
+            $response = $this->MProducts->editar_producto($request);
+            if (!$response) {
+                echo json_encode($this->message(false, "Hubo un error al actualizar."));
+                return;
+            }
+            echo json_encode($this->message(true, "Datos actualizados correctamente."));
+            return;
+        }
+        echo json_encode($this->message(false, "Hubo un error en la actualización."));
+        return;
+    }
+    public function getProductById(object $request)
+    {
+        $id = base64_decode($request->id);
+        $data = $this->MProducts->getProductById($id);
+        echo json_encode($data);
         return;
     }
 }

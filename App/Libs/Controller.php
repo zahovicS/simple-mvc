@@ -65,19 +65,20 @@ class Controller
             return $this->redirect(BASE_URL . "/");
         }
     }
-    protected function verifyImage(array $img) :array {
+    protected function verifyImage(array $img): array
+    {
         $msg = "";
         $status = true;
         $type = $img["type"];
         $size = $img["size"];
-        if(!$type == "image/jpeg" || !$type == "image/jpg" || !$type == "image/png"){
+        if (!$type == "image/jpeg" || !$type == "image/jpg" || !$type == "image/png") {
             $status = false;
             $msg = "El formato de imagen no es la correcta.";
         }
-        if($size>4000000){
+        if ($size > 4000000) {
             $status = false;
             $msg = "El tamaño de la imagen es mayor al permitido, [MAX: 4MB]";
         }
-        return ["msg"=>$msg,"status"=>$status];
+        return ["msg" => $msg, "status" => $status];
     }
 }

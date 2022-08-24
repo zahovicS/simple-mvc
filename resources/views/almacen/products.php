@@ -14,10 +14,18 @@
     <div class="hero-body">
         <div class="level">
             <div class="level-left">
-                <div class="level-item">
+                <div class="level-item has-control">
                     <h1 class="title">
                         Productos
                     </h1>
+                    <div class="ml-4 control has-icons-right">
+                        <input type="search" placeholder="Buscar producto..." class="input"
+                            id="search_products_in_table">
+                        <span class="icon is-small is-right">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                    </div>
+
                 </div>
             </div>
             <div class="level-right">
@@ -56,7 +64,7 @@
     <form action="<?= BASE_URL ?>/products/crear" method="POST" class="modal-card" id="frmCrearProducto"
         enctype="multipart/form-data">
         <header class="modal-card-head">
-            <p class="modal-card-title is-uppercase has-text-weight-bold is-size-4">Crear Produto</p>
+            <p class="modal-card-title is-uppercase has-text-weight-bold is-size-4">Crear Producto</p>
         </header>
         <section class="modal-card-body">
             <label class="label">Código</label>
@@ -122,8 +130,85 @@
             </div>
         </section>
         <footer class="modal-card-foot">
-            <button type="button" class="button jb-modal-close">Cancelar</button>
+            <button type="button" class="button jb-modal-close" id="modal_close_add">Cancelar</button>
             <button type="submit" class="button is-success">Crear</button>
+        </footer>
+    </form>
+</div>
+<div id="editar-producto" class="modal">
+    <div class="modal-background"></div>
+    <form action="<?= BASE_URL ?>/products/editar" method="POST" class="modal-card" id="frmEditarProducto"
+        enctype="multipart/form-data">
+        <header class="modal-card-head">
+            <p class="modal-card-title is-uppercase has-text-weight-bold is-size-4">Editar Producto</p>
+        </header>
+        <section class="modal-card-body">
+            <input type="hidden" id="id_producto_edit" name="id_producto_edit">
+            <label class="label">Código</label>
+            <div class="field has-addons">
+                <div class="control width-100">
+                    <input class="input" type="text" placeholder="Escriba un codigo en EAN-13"
+                        name="codigo_producto_edit" id="codigo_producto_edit" maxlength="11" minlength="3">
+                </div>
+                <div class="control">
+                    <a class="button is-info" id="btnGenerar_codigo_edit" data-target-input="#codigo_producto_edit"
+                        maxlength="255">
+                        Generar
+                    </a>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Nombre</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Mascarilla facial JL-100" name="nombre_producto_edit"
+                        id="nombre_producto_edit">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Categoría</label>
+                <div class="control">
+                    <div class="select width-100">
+                        <select class="width-100" id="select-categoria_edit" name="select-categoria_edit">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-grouped pt-2">
+                <div class="width-50 pr-1">
+                    <label class="label">Stock</label>
+                    <div class="control">
+                        <input class="input" type="number" value="0" placeholder="0" name="stock_producto_edit"
+                            id="stock_producto_edit">
+                    </div>
+                </div>
+                <div class="width-50 pl-1">
+                    <label class="label">Unidad de medida</label>
+                    <div class="control">
+                        <div class="select width-100">
+                            <select class="width-100" id="select-unidad_edit" name="select-unidad_edit">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="file is-warning width-100 mt-4">
+                <label class="file-label width-100 mt-4">
+                    <input class="file-input" type="file" name="imagen_producto_edit" id="imagen_producto_edit"
+                        accept="image/png, image/jpg, image/jpeg">
+                    <span class="file-cta width-100">
+                        <span class="file-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </span>
+                        <span class="file-label">
+                            Subir imagen
+                        </span>
+                    </span>
+                </label>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button type="button" class="button jb-modal-close" id="modal_close_edit">Cancelar</button>
+            <button type="submit" class="button is-success">Editar</button>
         </footer>
     </form>
 </div>

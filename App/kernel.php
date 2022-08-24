@@ -27,6 +27,8 @@ $router->get('/dashboard', Dashboard::class . "::index");
 $router->get('/products', Products::class . "::index");
 $router->get('/products/cargar_tabla', Products::class . "::tableProducts");
 $router->post('/products/crear', Products::class . "::crear");
+$router->post('/products/editar', Products::class . "::editar");
+$router->get('/products/getProductById', Products::class . "::getProductById");
 $router->get('/products/activar_producto', Products::class . "::activar_producto");
 $router->get('/products/desactivar_producto', Products::class . "::desactivar_producto");
 #END PRODUCTS
