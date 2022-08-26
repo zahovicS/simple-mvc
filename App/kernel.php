@@ -42,9 +42,7 @@ $router->get('/unidades/unidades_for_dropdown', Unidades::class . "::get_all_uni
 $router->post('/post', function (array $params = []) {
     dd($params);
 });
-$router->get('/test', function (array $params = []) {
-    var_dump($params);
-});
+$router->get('/test', Web::class . "::request");
 #END TESTING
 $router->addNotFoundHandler(function () {
     echo 'NOT FOUND';

@@ -49,12 +49,12 @@ class Base
     {
         return $this->stmt->execute();
     }
-    public function get()
+    public function fetchAll()
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
-    public function first()
+    public function fetch()
     {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
