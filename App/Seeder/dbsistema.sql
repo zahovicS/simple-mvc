@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-08-2022 a las 17:38:23
+-- Tiempo de generación: 26-08-2022 a las 00:28:48
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -30,11 +30,12 @@ SET time_zone = "+00:00";
 CREATE TABLE `articulo` (
   `idarticulo` int(11) NOT NULL,
   `idcategoria` int(11) NOT NULL,
-  `codigo` varchar(50) DEFAULT NULL,
+  `idunidad` int(11) NOT NULL,
+  `codigo` varchar(50) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `stock` int(11) DEFAULT NULL,
+  `stock` int(11) NOT NULL DEFAULT '0',
   `descripcion` varchar(256) DEFAULT NULL,
-  `imagen` varchar(50) DEFAULT NULL,
+  `imagen` varchar(50) NOT NULL DEFAULT 'default.jpg',
   `condicion` tinyint(4) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -42,12 +43,18 @@ CREATE TABLE `articulo` (
 -- Volcado de datos para la tabla `articulo`
 --
 
-INSERT INTO `articulo` (`idarticulo`, `idcategoria`, `codigo`, `nombre`, `stock`, `descripcion`, `imagen`, `condicion`) VALUES
-(6, 7, '00458', 'Teclado Ligheter', 19, 'modelo lighter de MICRONICS', '1535417422.jpg', 1),
-(7, 9, '0040kl', 'disco solido', 57, 'disco marca KINGSTON', '1535417431.jfif', 0),
-(8, 9, 'HJL-OP', 'DATATRABEL', 107, 'usb de 15gb', '1535417452.jpg', 0),
-(9, 8, '2131231231', 'pc gamer', 2, 'pc gamer de rtx 3050', '1656267987.jpg', 1),
-(10, 7, '21', 'dsds', 22, 'sdadasd', '1656369866.jpg', 1);
+INSERT INTO `articulo` (`idarticulo`, `idcategoria`, `idunidad`, `codigo`, `nombre`, `stock`, `descripcion`, `imagen`, `condicion`) VALUES
+(6, 1, 1, '29341697076', 'Teclado Ligheter', 6, 'modelo lighter de MICRONICS', '1535417422.jpg', 1),
+(7, 1, 1, '0040kl', 'disco solido', 57, 'disco marca KINGSTON', '1535417431.jfif', 1),
+(8, 1, 1, 'HJL-OP', 'DATATRABEL', 107, 'usb de 15gb', '1535417452.jpg', 1),
+(9, 1, 1, '2131231231', 'pc gamer', 2, 'pc gamer de rtx 3050', '1656267987.jpg', 1),
+(10, 1, 1, '21', 'dsds', 22, 'sdadasd', '1656369866.jpg', 1),
+(11, 1, 1, '52246519743', 'Mascarilla facial', 1, NULL, 'default.jpg', 1),
+(12, 1, 1, '49720199134', 'Mascarilla negra', 20, NULL, '63028e4555ffc.jpg', 1),
+(13, 1, 1, '42339725898', 'Control gamer', 0, NULL, '630291618a23f.jpg', 1),
+(14, 2, 1, '42611039662', 'PC GAMER ITEN CORE I5 + RTX 3070 RAM 16GB SSD 500GB', 14, NULL, '63056be4ca001.jpg', 1),
+(15, 1, 1, '72236744938', 'pc gamer', 2, NULL, 'default.jpg', 1),
+(16, 5, 1, '32622056412', 'MOUSE LOGITECH G502 HERO', 16, NULL, '63056c400d1db.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -67,11 +74,11 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`idcategoria`, `nombre`, `descripcion`, `condicion`) VALUES
-(7, 'TECLADOS', 'teclados gamers', 1),
-(8, 'CPU\'s', 'cpus gamers de alta categoria', 1),
-(9, 'DISCOS DUROS', 'disco solidos', 1),
-(12, 'MONITORES', 'monitores gamers', 1),
-(13, 'Mouses', 'gamers', 1);
+(1, 'SIN CATEGORIA', 'Sin categoria', 1),
+(2, 'CPU\'s', 'cpus gamers de alta categoria', 1),
+(3, 'DISCOS DUROS', 'disco solidos', 1),
+(4, 'MONITORES', 'monitores gamers', 1),
+(5, 'MOUSES', 'gamers', 1);
 
 -- --------------------------------------------------------
 
@@ -87,19 +94,6 @@ CREATE TABLE `detalle_ingreso` (
   `precio_compra` decimal(11,2) NOT NULL,
   `precio_venta` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `detalle_ingreso`
---
-
-INSERT INTO `detalle_ingreso` (`iddetalle_ingreso`, `idingreso`, `idarticulo`, `cantidad`, `precio_compra`, `precio_venta`) VALUES
-(16, 6, 6, 10, '20.00', '30.00'),
-(17, 6, 7, 5, '200.00', '250.00'),
-(18, 7, 8, 10, '16.00', '25.00'),
-(19, 8, 7, 10, '250.00', '300.00'),
-(20, 9, 8, 50, '20.00', '30.00'),
-(21, 10, 6, 10, '25.00', '30.00'),
-(22, 11, 7, 15, '250.00', '300.00');
 
 --
 -- Disparadores `detalle_ingreso`
@@ -126,36 +120,6 @@ CREATE TABLE `detalle_venta` (
   `precio_venta` decimal(11,2) NOT NULL,
   `descuento` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `detalle_venta`
---
-
-INSERT INTO `detalle_venta` (`iddetalle_venta`, `idventa`, `idarticulo`, `cantidad`, `precio_venta`, `descuento`) VALUES
-(12, 10, 6, 10, '30.00', '5.00'),
-(13, 10, 7, 10, '250.00', '10.00'),
-(14, 11, 6, 1, '30.00', '0.00'),
-(15, 11, 7, 1, '250.00', '0.00'),
-(16, 12, 7, 4, '250.00', '0.00'),
-(17, 13, 7, 1, '250.00', '10.00'),
-(18, 14, 7, 2, '250.00', '10.00'),
-(19, 15, 6, 1, '30.00', '10.00'),
-(20, 16, 7, 1, '250.00', '5.00'),
-(21, 17, 7, 1, '250.00', '5.00'),
-(22, 18, 6, 1, '30.00', '0.00'),
-(23, 19, 7, 1, '250.00', '2.00'),
-(24, 20, 8, 2, '25.00', '0.00'),
-(25, 21, 6, 1, '30.00', '5.00'),
-(26, 22, 6, 1, '30.00', '0.00'),
-(27, 22, 7, 1, '300.00', '0.00'),
-(28, 22, 8, 1, '30.00', '0.00'),
-(29, 23, 6, 1, '30.00', '0.00'),
-(30, 24, 7, 1, '300.00', '0.00'),
-(31, 25, 6, 1, '30.00', '0.00'),
-(32, 26, 6, 1, '30.00', '0.00'),
-(33, 27, 6, 1, '30.00', '0.00'),
-(34, 28, 6, 1, '30.00', '0.00'),
-(35, 29, 6, 1, '30.00', '0.00');
 
 --
 -- Disparadores `detalle_venta`
@@ -186,18 +150,6 @@ CREATE TABLE `ingreso` (
   `total_compra` decimal(11,2) NOT NULL,
   `estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `ingreso`
---
-
-INSERT INTO `ingreso` (`idingreso`, `idproveedor`, `idusuario`, `tipo_comprobante`, `serie_comprobante`, `num_comprobante`, `fecha_hora`, `impuesto`, `total_compra`, `estado`) VALUES
-(6, 7, 1, 'Factura', '001', '0001', '2018-08-20 00:00:00', '18.00', '1200.00', 'Aceptado'),
-(7, 7, 1, 'Factura', '001', '008', '2018-08-21 00:00:00', '18.00', '160.00', 'Aceptado'),
-(8, 7, 1, 'Boleta', '0002', '0004', '2018-08-22 00:00:00', '0.00', '2500.00', 'Aceptado'),
-(9, 9, 1, 'Factura', '001', '0005', '2018-08-23 00:00:00', '18.00', '1000.00', 'Aceptado'),
-(10, 10, 1, 'Factura', '001', '0006', '2018-08-25 00:00:00', '18.00', '250.00', 'Aceptado'),
-(11, 10, 1, 'Factura', '001', '0007', '2018-08-27 00:00:00', '18.00', '3750.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -245,11 +197,31 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`idpersona`, `tipo_persona`, `nombre`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`) VALUES
-(7, 'Proveedor', 'INKA-PC S.R.L', 'RUC', '12587845254', 'Av. los pinos 201', '54328730', 'inkapc@hotmail.com'),
-(8, 'Cliente', 'Público general', 'DNI', '00000000', 'Varios', '54325230', 'public@hotmail.com'),
-(9, 'Proveedor', 'TECNO-PC', 'RUC', '20485248751', 'Calle los naranjales 245', '054587852', 'tecno@gmail.com'),
-(10, 'Proveedor', 'INFONET', 'RUC', '40485245824', 'Av. quiñones 102', '054789854', 'infonet@hotmail.com'),
-(11, 'Cliente', 'pedro', 'DNI', '458521748', 'Simon bolivar 120', '78954263', 'pedro@gmailcom');
+(1, 'Proveedor', 'INKA-PC S.R.L', 'RUC', '12587845254', 'Av. los pinos 201', '54328730', 'inkapc@hotmail.com'),
+(2, 'Cliente', 'Público general', 'DNI', '00000000', 'Varios', '54325230', 'public@hotmail.com'),
+(3, 'Proveedor', 'TECNO-PC', 'RUC', '20485248751', 'Calle los naranjales 245', '054587852', 'tecno@gmail.com'),
+(4, 'Proveedor', 'INFONET', 'RUC', '40485245824', 'Av. quiñones 102', '054789854', 'infonet@hotmail.com'),
+(5, 'Cliente', 'pedro', 'DNI', '458521748', 'Simon bolivar 120', '78954263', 'pedro@gmailcom');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `unidad`
+--
+
+CREATE TABLE `unidad` (
+  `idunidad` int(11) NOT NULL,
+  `nombre` char(30) COLLATE utf8_spanish2_ci NOT NULL,
+  `value` char(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `condicion` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `unidad`
+--
+
+INSERT INTO `unidad` (`idunidad`, `nombre`, `value`, `condicion`) VALUES
+(1, 'UNIDAD', 'NIU', 1);
 
 -- --------------------------------------------------------
 
@@ -329,32 +301,6 @@ CREATE TABLE `venta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `venta`
---
-
-INSERT INTO `venta` (`idventa`, `idcliente`, `idusuario`, `tipo_comprobante`, `serie`, `num_comprobante`, `fecha_hora`, `impuesto`, `total_venta`, `m_pago`, `observacion`, `estado`) VALUES
-(10, 8, 1, 'Boleta', 'B001', '1', '2018-01-08 00:00:00', '0.00', '11800.15', 'C', NULL, 'Aceptado'),
-(11, 8, 1, 'Factura', 'F001', '1', '2018-03-05 00:00:00', '18.00', '3800.00', 'C', NULL, 'Aceptado'),
-(12, 8, 1, 'Ticket', 'TK01', '1', '2018-04-17 00:00:00', '0.00', '1000.00', 'C', NULL, 'Aceptado'),
-(13, 8, 1, 'Factura', 'F001', '2', '2018-06-09 00:00:00', '18.00', '240.00', 'C', NULL, 'Aceptado'),
-(14, 8, 1, 'Factura', 'F001', '3', '2018-07-24 00:00:00', '18.00', '490.00', 'C', NULL, 'Aceptado'),
-(15, 8, 1, 'Factura', 'F001', '4', '2018-08-26 00:00:00', '18.00', '20.00', 'C', NULL, 'Aceptado'),
-(16, 8, 1, 'Boleta', 'B001', '2', '2018-08-26 00:00:00', '0.00', '245.00', 'C', NULL, 'Aceptado'),
-(17, 8, 1, 'Factura', 'F001', '5', '2018-08-26 00:00:00', '18.00', '245.00', 'C', NULL, 'Aceptado'),
-(18, 8, 1, 'Boleta', 'B001', '3', '2018-08-26 00:00:00', '0.00', '30.00', 'C', NULL, 'Aceptado'),
-(19, 8, 1, 'Factura', 'F001', '6', '2018-08-26 00:00:00', '18.00', '248.00', 'C', NULL, 'Aceptado'),
-(20, 8, 1, 'Factura', 'F001', '7', '2018-08-26 00:00:00', '18.00', '50.00', 'C', NULL, 'Aceptado'),
-(21, 8, 1, 'Factura', 'F001', '8', '2018-08-27 00:00:00', '18.00', '25.00', 'C', NULL, 'Aceptado'),
-(22, 11, 1, 'Ticket', 'TK01', '2', '2018-08-27 00:00:00', '0.00', '360.00', 'C', NULL, 'Aceptado'),
-(23, 8, 1, 'Factura', 'F001', '9', '2022-06-28 00:00:00', '18.00', '30.00', 'C', NULL, 'Aceptado'),
-(24, 8, 1, 'Ticket', 'TK01', '3', '2022-06-28 00:00:00', '0.00', '0.00', 'C', NULL, 'Aceptado'),
-(25, 8, 1, 'Ticket', 'TK01', '4', '2022-06-28 00:00:00', '0.00', '30.00', 'C', NULL, 'Aceptado'),
-(26, 8, 1, 'Ticket', 'TK01', '5', '2022-06-28 00:00:00', '0.00', '30.00', 'C', NULL, 'Aceptado'),
-(27, 8, 1, 'Boleta', 'B001', '4', '2022-06-28 00:00:00', '18.00', '30.00', 'C', NULL, 'Aceptado'),
-(28, 8, 1, 'Ticket', 'TK01', '6', '2022-06-28 00:00:00', '0.00', '30.00', 'C', NULL, 'Aceptado'),
-(29, 8, 1, 'Factura', 'F001', '10', '2022-06-28 00:00:00', '18.00', '30.00', 'C', NULL, 'Aceptado');
-
---
 -- Índices para tablas volcadas
 --
 
@@ -363,15 +309,14 @@ INSERT INTO `venta` (`idventa`, `idcliente`, `idusuario`, `tipo_comprobante`, `s
 --
 ALTER TABLE `articulo`
   ADD PRIMARY KEY (`idarticulo`),
-  ADD UNIQUE KEY `nombre_UNIQUE` (`nombre`),
-  ADD KEY `fk_articulo_categoria_idx` (`idcategoria`);
+  ADD KEY `fk_articulo_categoria_idx` (`idcategoria`),
+  ADD KEY `fk_articulo_unidad` (`idunidad`);
 
 --
 -- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`idcategoria`),
-  ADD UNIQUE KEY `nombre_UNIQUE` (`nombre`);
+  ADD PRIMARY KEY (`idcategoria`);
 
 --
 -- Indices de la tabla `detalle_ingreso`
@@ -410,6 +355,13 @@ ALTER TABLE `persona`
   ADD PRIMARY KEY (`idpersona`);
 
 --
+-- Indices de la tabla `unidad`
+--
+ALTER TABLE `unidad`
+  ADD PRIMARY KEY (`idunidad`),
+  ADD UNIQUE KEY `value` (`value`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -440,31 +392,31 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `idarticulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idarticulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `permiso`
@@ -476,7 +428,13 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `unidad`
+--
+ALTER TABLE `unidad`
+  MODIFY `idunidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -494,7 +452,7 @@ ALTER TABLE `usuario_permiso`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -504,7 +462,8 @@ ALTER TABLE `venta`
 -- Filtros para la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  ADD CONSTRAINT `fk_articulo_categoria` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_articulo_categoria` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_articulo_unidad` FOREIGN KEY (`idunidad`) REFERENCES `unidad` (`idunidad`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `detalle_ingreso`
