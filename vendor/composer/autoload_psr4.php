@@ -10,6 +10,7 @@ return array(
     'Sabberworm\\CSS\\' => array($vendorDir . '/sabberworm/php-css-parser/src'),
     'Peru\\' => array($vendorDir . '/giansalex/peru-consult/src/Peru'),
     'Masterminds\\' => array($vendorDir . '/masterminds/html5/src'),
+    'Luecano\\NumeroALetras\\' => array($vendorDir . '/luecano/numero-a-letras/src'),
     'FontLib\\' => array($vendorDir . '/phenx/php-font-lib/src/FontLib'),
     'Dompdf\\' => array($vendorDir . '/dompdf/dompdf/src'),
 );

@@ -15,11 +15,15 @@ spl_autoload_register(function ($clase) {
 //other
 require '../vendor/autoload.php';
 $router = new Router();
+$web = new Web();
 #LOGIN
 $router->get('/', Login::class . "::index");
 $router->post('/Login', Login::class . "::loger");
 $router->post('/Login/logout', Login::class . "::logout");
 #END LOGIN
+#BUSINESS
+// $router->get('/business/getBusiness', Business::class . "::getBusiness");
+#END BUSINESS
 #DASHBOARD
 $router->get('/dashboard', Dashboard::class . "::index");
 #END DASHBOARD
@@ -38,13 +42,19 @@ $router->get('/categories/categories_for_dropdown', Categories::class . "::get_a
 #UNIDADES
 $router->get('/unidades/unidades_for_dropdown', Unidades::class . "::get_all_unidades_for_dropdown");
 #END UNIDADES
+#VENTA
+$router->get('/venta/nueva_venta', Venta::class . "::index");
+#END VENTA
+#HELPER TEMP
+// $router->get('/business/getBusiness', Helper::class . "::getBusiness");
+#END HELPER
 #TESTING
 $router->post('/post', function (array $params = []) {
     dd($params);
 });
 $router->get('/test', Web::class . "::request");
 #END TESTING
-$router->addNotFoundHandler(function () {
-    echo 'NOT FOUND';
+$router->addNotFoundHandler(function () use ($web) {
+    $web->_404();
 });
 $router->run();

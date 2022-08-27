@@ -6,6 +6,7 @@ class Products extends Controller
         $this->verifyAuthUser();
         parent::__construct();
         $this->MProducts = $this->model("Product");
+        $this->Helper = $this->controller("Helper");
     }
     public function index()
     {
@@ -55,6 +56,7 @@ class Products extends Controller
                 $value->nombre,
                 $value->categoria,
                 $stock,
+                $this->Helper->formatPrice($value->price_out),
                 $value->condicion == "1" ? '<div class="has-text-centered"><span class="tag is-primary is-light">Activado</span></div>' : '<div class="has-text-centered"><span class="tag is-danger is-light">Desactivado</span></div>',
                 $actions
             ];
@@ -89,7 +91,7 @@ class Products extends Controller
         if ($request->codigo_producto != "") {
             $has_image = count($request->FILES) > 0 ? true : false;
             if ($has_image) {
-                $image_response = $this->verifyImage($request->FILES->imagen_producto);
+                $image_response = $this->verifyImage($request->FILES["imagen_producto"]);
                 if (!$image_response["status"]) {
                     echo json_encode($this->message($image_response["status"], $image_response["msg"]));
                     return;

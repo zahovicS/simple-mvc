@@ -1,9 +1,9 @@
 <?php
-class Unidad extends Model
+class Empresa extends Model
 {
     public function __construct()
     {
-        $this->table = "unidad";
+        $this->table = "business";
         parent::__construct();
     }
 }

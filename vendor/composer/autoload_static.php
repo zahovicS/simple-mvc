@@ -20,6 +20,10 @@ class ComposerStaticInit4e331764102c34d7832e667a247703b4
         array (
             'Masterminds\\' => 12,
         ),
+        'L' => 
+        array (
+            'Luecano\\NumeroALetras\\' => 22,
+        ),
         'F' => 
         array (
             'FontLib\\' => 8,
@@ -46,6 +50,10 @@ class ComposerStaticInit4e331764102c34d7832e667a247703b4
         'Masterminds\\' => 
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
+        ),
+        'Luecano\\NumeroALetras\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/luecano/numero-a-letras/src',
         ),
         'FontLib\\' => 
         array (

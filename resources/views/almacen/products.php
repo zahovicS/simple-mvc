@@ -49,6 +49,7 @@
                     <th>Nombre</th>
                     <th>Categoria</th>
                     <th class="has-text-centered">Stock</th>
+                    <th class="has-text-centered">Precio</th>
                     <th class="has-text-centered">Estado</th>
                     <th class="has-text-centered">Opciones</th>
                 </tr>
@@ -87,12 +88,21 @@
                         id="nombre_producto">
                 </div>
             </div>
-            <div class="field">
-                <label class="label">Categoría</label>
-                <div class="control">
-                    <div class="select width-100">
-                        <select class="width-100" id="select-categoria" name="select-categoria">
-                        </select>
+            <div class="field is-grouped pt-2">
+                <div class="width-50 pr-1">
+                    <label class="label">Categoría</label>
+                    <div class="control">
+                        <div class="select width-100">
+                            <select class="width-100" id="select-categoria" name="select-categoria">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="width-50 pl-1">
+                    <label class="label">Precio de venta</label>
+                    <div class="control">
+                        <input class="input" step="0.01" type="number" placeholder="20.00" name="precio_producto"
+                            id="precio_producto">
                     </div>
                 </div>
             </div>
@@ -164,12 +174,21 @@
                         id="nombre_producto_edit">
                 </div>
             </div>
-            <div class="field">
-                <label class="label">Categoría</label>
-                <div class="control">
-                    <div class="select width-100">
-                        <select class="width-100" id="select-categoria_edit" name="select-categoria_edit">
-                        </select>
+            <div class="field is-grouped pt-2">
+                <div class="width-50 pr-1">
+                    <label class="label">Categoría</label>
+                    <div class="control">
+                        <div class="select width-100">
+                            <select class="width-100" id="select-categoria_edit" name="select-categoria_edit">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="width-50 pl-1">
+                    <label class="label">Precio de venta</label>
+                    <div class="control">
+                        <input class="input" step="0.01" type="number" placeholder="20.00" name="precio_producto_edit"
+                            id="precio_producto_edit">
                     </div>
                 </div>
             </div>
@@ -208,7 +227,7 @@
         </section>
         <footer class="modal-card-foot">
             <button type="button" class="button jb-modal-close" id="modal_close_edit">Cancelar</button>
-            <button type="submit" class="button is-success">Editar</button>
+            <button type="submit" class="button is-info">Editar</button>
         </footer>
     </form>
 </div>

@@ -19,7 +19,8 @@ class Categories extends Controller
     }
     public function get_all_categories_for_dropdown()
     {
-        $data = $this->MCategoria->categories_for_dropdown();
+        $data = $this->MCategoria->select('*')
+            ->where('condicion', '=', 1)->get();
         echo json_encode($data);
         return;
     }

@@ -24,6 +24,7 @@ class Login extends Controller
             if ($confirm["status"]) {
                 $permisos = $this->model_usuario->get_permisos_user($confirm["data"]->idusuario);
                 $_SESSION["id_usuario"] = $confirm["data"]->idusuario;
+                $_SESSION["id_business"] = $confirm["data"]->idbusiness;
                 $_SESSION["nombre"] = $confirm["data"]->nombre;
                 $_SESSION["us_tipo_name"] = $confirm["data"]->cargo;
                 $_SESSION["rute_profile"] = $confirm["data"]->imagen;

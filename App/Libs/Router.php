@@ -53,7 +53,7 @@ class Router
         }
         if (!$callback) {
             // dd($callback);
-            header("HTTP/1.0 404 Not Found");
+            // header("HTTP/1.0 404 Not Found");
             if (!empty($this->notFoundHandler)) {
                 $callback = $this->notFoundHandler;
             }

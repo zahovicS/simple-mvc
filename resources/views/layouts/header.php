@@ -161,7 +161,7 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="#!">
+                                <a href="' . BASE_URL . '/venta/nueva_venta">
                                     <span>Ventas</span>
                                 </a>
                             </li>

@@ -1,9 +1,9 @@
 <?php
-class Unidad extends Model
+class Moneda extends Model
 {
     public function __construct()
     {
-        $this->table = "unidad";
+        $this->table = "moneda";
         parent::__construct();
     }
 }

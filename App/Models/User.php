@@ -24,7 +24,7 @@ class User extends Model
         $response = ["status" => false, "data" => null];
         $this->db->query("SELECT * FROM usuario WHERE email=:email AND del_status = 'Live' LIMIT 1");
         $this->db->bind(":email", $email);
-        $res = $this->db->first();
+        $res = $this->db->fetch();
         if (password_verify($pass, $res->clave)) {
             $response = ["status" => true, "data" => $res];
         }
@@ -35,7 +35,7 @@ class User extends Model
         $res = [];
         $this->db->query("SELECT permiso.nombre FROM usuario_permiso INNER JOIN permiso on usuario_permiso.idpermiso = permiso.idpermiso WHERE usuario_permiso.idusuario=:idusuario");
         $this->db->bind(":idusuario", $id);
-        $res = $this->db->get();
+        $res = $this->db->fetchAll();
         return $res;
     }
 }

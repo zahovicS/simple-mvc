@@ -1,18 +1,24 @@
 <?php
 class Model
 {
+    //conexion a base de datos
     protected $db;
+    //nombre de la tabla
     protected $table;
+    //query construido
     protected $query;
+    //valores agregados
     protected $values = [];
+    //resultado - no usado
+    protected $result = [];
 
     public function __construct()
     {
         $this->db = new Base;
     }
-    public function select($query_select)
+    public function select(string ...$query_select)
     {
-        $this->query = $query_select . " FROM " . $this->table;
+        $this->query = "SELECT " . implode(', ', $query_select) . " FROM " . $this->table;
         return $this;
     }
     public function where(string $column, string $operator = "=", $value)

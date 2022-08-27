@@ -6,11 +6,4 @@ class Categoria extends Model
         $this->table = "categoria";
         parent::__construct();
     }
-    public function categories_for_dropdown()
-    {
-        $res = [];
-        $this->db->query("SELECT * FROM {$this->table} WHERE condicion = 1");
-        $res = $this->db->get();
-        return $res;
-    }
 }

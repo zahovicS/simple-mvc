@@ -117,6 +117,7 @@ $(function () {
       $('#id_producto_edit').val(id)
       $('#codigo_producto_edit').val(response.data.codigo)
       $('#nombre_producto_edit').val(response.data.nombre)
+      $('#precio_producto_edit').val(response.data.price_out)
       $('#select-categoria_edit')
         .val(response.data.idcategoria)
         .trigger('change')
@@ -172,9 +173,15 @@ $(function () {
         required: true,
         minlength: 4,
       },
+      precio_producto: {
+        required: true,
+        minlength: 1,
+        number: true,
+      },
       stock_producto: {
         required: false,
         minlength: 1,
+        number: true,
       },
       'select-categoria': {
         required: true,
@@ -187,6 +194,7 @@ $(function () {
       let params = new FormData()
       params.append('codigo_producto', $('#codigo_producto').val())
       params.append('nombre_producto', $('#nombre_producto').val())
+      params.append('precio_producto', $('#precio_producto').val())
       params.append('select_categoria', $('#select-categoria').val())
       params.append('select_unidad', $('#select-unidad').val())
       params.append('stock_producto', $('#stock_producto').val())
@@ -226,9 +234,15 @@ $(function () {
         required: true,
         minlength: 4,
       },
+      precio_producto_edit: {
+        required: true,
+        minlength: 1,
+        number: true,
+      },
       stock_producto_edit: {
         required: false,
         minlength: 1,
+        number: true,
       },
       'select-categoria_edit': {
         required: true,
@@ -242,6 +256,7 @@ $(function () {
       params.append('id_producto_edit', $('#id_producto_edit').val())
       params.append('codigo_producto_edit', $('#codigo_producto_edit').val())
       params.append('nombre_producto_edit', $('#nombre_producto_edit').val())
+      params.append('precio_producto_edit', $('#precio_producto_edit').val())
       params.append('select_categoria_edit', $('#select-categoria_edit').val())
       params.append('select_unidad_edit', $('#select-unidad_edit').val())
       params.append('stock_producto_edit', $('#stock_producto_edit').val())

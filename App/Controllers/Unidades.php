@@ -19,7 +19,8 @@ class Unidades extends Controller
     }
     public function get_all_unidades_for_dropdown()
     {
-        $data = $this->MUnidad->unidad_for_dropdown();
+        $data = $this->MUnidad->select('*')
+            ->where('condicion', '=', 1)->get();
         echo json_encode($data);
         return;
     }
